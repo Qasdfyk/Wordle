@@ -5,21 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wordle Game</title>
   <link rel="stylesheet" href="../src/static/style.css">
-  <link rel="stylesheet" href="../src/static/profile.css"> <!-- Add profile.css for styling -->
+  <link rel="stylesheet" href="../src/static/profile.css">
 </head>
 <body>
 <div class="game-container">
-  <button id="refreshButton">&#x21bb;</button> <!-- Refresh Button -->
-  <button id="profileButton">&#x1F464;</button> <!-- Profile Button -->
+  <button id="refreshButton">&#x21bb;</button>
+  <button id="profileButton">&#x1F464;</button>
 
-  <!-- Profile Panel -->
   <div id="profilePanel">
     <p id="usernameDisplay">Username: <span id="username">Guest</span></p>
   </div>
 
   <h1>Wordle Game</h1>
   <div class="board">
-    <!-- Rows and tiles will be dynamically generated here -->
+
   </div>
   <input type="text" id="guessInput" maxlength="5" placeholder="5-letter word">
   <button id="guessButton">Guess</button>
@@ -29,6 +28,6 @@
 
 <script src="../src/static/js/keyboard.js"></script>
 <script src="../src/static/js/script.js"></script>
-<script src="../src/static/js/profile.js"></script> <!-- Add profile.js for handling the profile panel -->
+<script src="../src/static/js/profile.js"></script>
 </body>
 </html>
