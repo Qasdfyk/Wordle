@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    position: relative;
+    text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+#refreshButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+}
+
+#refreshButton:hover {
+    color: #555;
+}
+
+
+.board {
+    display: grid;
+    grid-template-rows: repeat(6, 60px);
+    grid-template-columns: repeat(5, 60px);
+    gap: 8px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+
+.row {
+    display: contents;
+}
+
+.tile {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tile.correct {
+    background-color: #6aaa64;
+    border-color: #6aaa64;
+    color: white;
+}
+
+.tile.present {
+    background-color: #c9b458;
+    border-color: #c9b458;
+    color: white;
+}
+
+.tile.absent {
+    background-color: #787c7e;
+    border-color: #787c7e;
+    color: white;
+}
+
+input[type="text"] {
+    padding: 15px;
+    font-size: 22px;
+    text-transform: uppercase;
+    width: 250px;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 22px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+p#message {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #333;
+}
+
+/* Keyboard styling */
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.key {
+    width: 40px;
+    padding: 10px;
+    margin: 2px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #ddd;
+    border: 2px solid #bbb;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    display: flex; /* Add this line */
+    justify-content: center; /* Add this line */
+    align-items: center; /* Add this line */
+}
+
+.key.correct {
+    background-color: #6aaa64;
+    border-color: #6aaa64;
+    color: white;
+}
+
+.key.present {
+    background-color: #c9b458;
+    border-color: #c9b458;
+    color: white;
+}
+
+.key.absent {
+    background-color: #787c7e;
+    border-color: #787c7e;
+    color: white;
+}
+
+.key.backspace {
+    width: 70px; /* Make the backspace key wider */
+    font-size: 18px;
+    background-color: #bbb;
+}
+
+.key:active {
+    background-color: #bbb;
+}
+
