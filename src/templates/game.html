@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wordle Game</title>
-  <link rel="stylesheet" href="../src/static/style.css">
-  <link rel="stylesheet" href="../src/static/profile.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div class="game-container">
@@ -26,8 +26,7 @@
   <div id="keyboard"></div>
 </div>
 
-<script src="../src/static/js/keyboard.js"></script>
-<script src="../src/static/js/script.js"></script>
-<script src="../src/static/js/profile.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='profile.js') }}"></script>
 </body>
 </html>

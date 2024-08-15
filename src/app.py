@@ -11,6 +11,7 @@ def login():
 def register():
     return render_template('register.html')
 
+
 @app.route('/game')
 def game():
     return render_template('game.html')

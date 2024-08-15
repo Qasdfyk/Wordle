@@ -5,6 +5,49 @@ let correctWord = "";
 const guessedWords = new Set();
 const letterStates = {}; // To track the state of each letter on the keyboard
 
+// Generate the on-screen keyboard
+function generateKeyboard() {
+    const keyboard = document.getElementById('keyboard');
+    const rows = [
+        'qwertyuiop',
+        'asdfghjkl',
+        'zxcvbnm⌫'
+    ];
+
+    rows.forEach(row => {
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'keyboard-row';
+
+        row.split('').forEach(key => {
+            const keyElement = document.createElement('button');
+            keyElement.className = 'key';
+            keyElement.textContent = key.toUpperCase();
+            keyElement.addEventListener('click', () => handleKeyboardInput(key));
+            rowDiv.appendChild(keyElement);
+        });
+
+        keyboard.appendChild(rowDiv);
+    });
+}
+
+// Handle input from the on-screen keyboard
+function handleKeyboardInput(letter) {
+    const guessInput = document.getElementById('guessInput');
+    if (letter === '⌫') {
+        handleBackspace();
+    } else {
+        if (guessInput.value.length < maxCols) {
+            guessInput.value += letter;
+        }
+    }
+}
+
+// Handle backspace
+function handleBackspace() {
+    const guessInput = document.getElementById('guessInput');
+    guessInput.value = guessInput.value.slice(0, -1);
+}
+
 // Function to check if a word is valid using an API
 async function isWordInDictionary(word) {
     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
@@ -143,12 +186,6 @@ document.getElementById('guessInput').addEventListener('keypress', function(even
 });
 
 window.onload = function() {
-    // Check if the user is authenticated
-    if (localStorage.getItem('isAuthenticated') !== 'true') {
-        // If not authenticated, redirect to the login page
-        window.location.href = 'login.html';
-    } else {
-        // If authenticated, initialize the game
-        initializeGame();
-    }
+    initializeGame();
+
 };
