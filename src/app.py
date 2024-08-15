@@ -90,7 +90,7 @@ def register():
 @app.route('/game', methods=['GET', 'POST'])
 @login_required
 def game():
-    return render_template('game.html')
+    return render_template('game.html', username=current_user.username)
 
 if __name__ == '__main__':
     app.run(debug=True)

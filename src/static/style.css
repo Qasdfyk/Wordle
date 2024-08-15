@@ -88,14 +88,14 @@ button {
     padding: 15px 30px;
     font-size: 22px;
     cursor: pointer;
-    background-color: #333;
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 8px;
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #4CAF49;
 }
 
 p#message {

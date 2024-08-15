@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('/logout')
             .then(response => {
                 if (response.ok) {
-                    window.location.href = '/login.html'; // Redirect to login page
+                    window.location.href = '/login'; // Redirect to login page
                 } else {
                     alert('Logout failed');
                 }

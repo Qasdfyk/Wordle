@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start; /* Start aligning content from the top */
 }
 
 #profilePanel.active {
@@ -31,11 +32,23 @@
 }
 
 #usernameDisplay {
+    font-size: 28px; /* Set the font size to 22px */
     margin-bottom: 20px;
+    font-weight: bold; /* Optional: Make the text bold for better emphasis */
 }
 
 #logoutButton {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 30px; /* Increased padding to make the button larger */
+    font-size: 22px; /* Increased font size to make the text larger */
     cursor: pointer;
+    background-color: #4CAF50; /* Green color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: auto; /* Keep some spacing between the username display and logout button */
+    margin-bottom: 40px; /* Margin at the bottom to position higher */
+}
+
+#logoutButton:hover {
+    background-color: #45a049;
 }
