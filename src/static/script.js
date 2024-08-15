@@ -59,7 +59,7 @@ async function getRandomWord() {
     try {
         const response = await fetch('https://random-word-api.herokuapp.com/word?length=5');
         const data = await response.json();
-        if (!isWordInDictionary(data[0])) {
+        if (!await isWordInDictionary(data[0])) {
             displayMessage("Error initializing game. Please try again.");
         }
         return data[0].toLowerCase(); // Return the word in lowercase
@@ -117,6 +117,7 @@ async function handleGuess() {
 
     if (currentRow >= maxRows) {
         displayMessage(`Game over! The correct word was "${correctWord}".`);
+        updateGameStats(false);
         return;
     }
 
@@ -141,6 +142,7 @@ async function handleGuess() {
 
     if (guessInput === correctWord) {
         displayMessage("Congratulations! You guessed the word!");
+        updateGameStats(true);
         return;
     }
 
@@ -148,9 +150,28 @@ async function handleGuess() {
     currentRow++;
     if (currentRow === maxRows) {
         displayMessage(`Game over! The correct word was "${correctWord}".`);
+        updateGameStats(false);
     }
 
     document.getElementById('guessInput').value = ""; // Clear the input for the next guess
+}
+
+// Send game stats to the server
+async function updateGameStats(win) {
+    try {
+        const response = await fetch('/update_stats', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ win })
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update stats');
+        }
+    } catch (error) {
+        console.error('Error updating game stats:', error);
+    }
 }
 
 function displayMessage(message) {
@@ -187,5 +208,22 @@ document.getElementById('guessInput').addEventListener('keypress', function(even
 
 window.onload = function() {
     initializeGame();
-
+    fetchAndUpdateStats();
 };
+
+// Fetch and update user statistics
+async function fetchAndUpdateStats() {
+    try {
+        const response = await fetch('/get_stats');
+        if (response.ok) {
+            const stats = await response.json();
+            const usernameElement = document.getElementById('username');
+            usernameElement.textContent = `${usernameElement.textContent.split("'")[0]}'s stats:`;
+            document.getElementById('statsDisplay').textContent = `Wins: ${stats.wins} | Losses: ${stats.losses}`;
+        } else {
+            console.error('Failed to fetch user stats');
+        }
+    } catch (error) {
+        console.error('Error fetching user stats:', error);
+    }
+}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, jsonify, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -26,7 +26,30 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
+    wins = db.Column(db.Integer, default=0)  
+    losses = db.Column(db.Integer, default=0)
 
+@app.route('/update_stats', methods=['POST'])
+@login_required
+def update_stats():
+    data = request.json
+    win = data.get('win')
+    user = current_user
+    if win:
+        user.wins += 1
+    else:
+        user.losses += 1
+    db.session.commit()
+    return jsonify({'status': 'success'})
+
+@app.route('/get_stats', methods=['GET'])
+@login_required
+def get_stats():
+    user = current_user
+    return jsonify({
+        'wins': user.wins,
+        'losses': user.losses
+    })
 
 class RegisterForm(FlaskForm):
     username = StringField(validators=[
