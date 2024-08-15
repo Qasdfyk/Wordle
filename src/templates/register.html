@@ -8,35 +8,15 @@
 <link rel="stylesheet" href="../static/login.css">
 </head>
 <body>
-<div class="login-container">
-<h1>Register</h1>
-<form method="POST">
-<div class="input-group">
-<label for="username">Username:</label>
-<input type="text" id="username" name="username" required>
-</div>
+    <h1>Register Page</h1>
 
-<div class="input-group">
-<label for="password">Password:</label>
-<input type="password" id="password" name="password" required>
-</div>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {{ form.username }}
+        {{ form.password }}
+        {{ form.submit }}
+    </form>
 
-<button type="submit" class="login-button">Register</button>
-</form>
-
-<div class="login-link">
-<p>Already have an account? <a href="{{url_for('login')}}">Login here</a></p>
-</div>
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<div class="error-messages">
-{% for message in messages %}
-<p>{{ message }}</p>
-{% endfor %}
-</div>
-{% endif %}
-{% endwith %}
-</div>
+    <a href="{{ url_for('login') }}">Already have an account? Log In</a>
 </body>
 </html>
